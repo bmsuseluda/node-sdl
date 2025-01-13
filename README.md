@@ -2546,7 +2546,7 @@ On Mac, you will also need to install `xquartz` so that SDL can find the X11 hea
 You can do that via `brew install xquartz`.
 
 You don't need to install any SDL libraries or headers.
-These will be downloaded automatically through the [@kmamal/build-sdl](https://github.com/kmamal/build-sdl) package.
+These will be downloaded automatically through the [@bmsuseluda/build-sdl](https://github.com/bmsuseluda/build-sdl) package.
 If `@kmamal/build-sdl` has no prebuilt library for your platform, it will try to compile one on the spot.
 You will need to have `cmake` installed for that to work.
 
@@ -2558,7 +2558,7 @@ There are some npm scripts in `package.json` that could be of use to you:
 * `npm run download-release` downloads the prebuilt binaries. This is the first thing the install script tries to do.
 * `npm run download-sdl` downloads the SDL headers and libraries from `@kmamal/build-sdl` so you can compile against them in later steps. This is the second step in the install script, after `download-release` has failed.
 * `npm run build` prepares the environment variables and calls `node-gyp` to build the package.
-* `NODE_SDL_FROM_SOURCE=1 npm install` runs the install script normally, but skips the inital attempt to download the binaries, and goes straight to building from source.
+* `NODE_SDL_FROM_SOURCE=1 npm install` runs the install script normally, but skips the initial attempt to download the binaries, and goes straight to building from source.
 
 The SDL headers and libs get downloaded to `sdl/`, the build happens in `build/`, and the final binaries get collected into `dist/`.
 

@@ -137,8 +137,8 @@ controller::open (const Napi::CallbackInfo &info)
 	bool has_rumble = SDL_GameControllerHasRumble(controller);
 	bool has_rumble_triggers = SDL_GameControllerHasRumbleTriggers(controller);
 
-	const char *steam_handle = SDL_GameControllerGetSteamHandle(controller);
-	Napi::Value steam_handle_node = steam_handle == 0 ? env.Null() : Napi::String::New(env, steam_handle);
+	int steam_handle = SDL_GameControllerGetSteamHandle(controller);
+	api::Value steam_handle_node = steam_handle == 0 ? env.Null() : Napi::Number::New(env, steam_handle);
 	
 	const char *controller_path = SDL_GameControllerPath(controller);
 	Napi::Value controller_path_node = controller_path == 0 ? env.Null() : Napi::String::New(env, controller_path);

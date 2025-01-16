@@ -973,7 +973,7 @@ export namespace Sdl {
 			readonly controllerVendor: number
 			readonly controllerProduct: number
 			readonly controllerPath: string
-			readonly steamHandle: string
+			readonly steamHandle: number
 			readonly serialNumber: string
 
 			readonly axes: {

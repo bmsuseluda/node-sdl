@@ -118,23 +118,43 @@ controller::open (const Napi::CallbackInfo &info)
 		throw Napi::Error::New(env, message.str());
 	}
 
-	int firmware = SDL_JoystickGetFirmwareVersion(joystick);
+	const char *controller_name = SDL_GameControllerName(controller);
+	Napi::Value controller_name_node = controller_name == 0 ? env.Null() : Napi::String::New(env, controller_name);
+
+	int firmware = SDL_GameControllerGetFirmwareVersion(controller);
 	Napi::Value firmware_version = firmware == 0 ? env.Null() : Napi::Number::New(env, firmware);
 
-	const char *serial = SDL_JoystickGetSerial(joystick);
+	int vendor = SDL_GameControllerGetVendor(controller);
+	Napi::Value vendor_node = vendor == 0 ? env.Null() : Napi::Number::New(env, vendor);
+
+	int product = SDL_GameControllerGetProduct(controller);
+	Napi::Value product_node = product == 0 ? env.Null() : Napi::Number::New(env, product);
+
+	const char *serial = SDL_GameControllerGetSerial(controller);
 	Napi::Value serial_number = serial == 0 ? env.Null() : Napi::String::New(env, serial);
 
-	bool has_led = SDL_JoystickHasLED(joystick);
-	bool has_rumble = SDL_JoystickHasRumble(joystick);
-	bool has_rumble_triggers = SDL_JoystickHasRumbleTriggers(joystick);
+	bool has_led = SDL_GameControllerHasLED(controller);
+	bool has_rumble = SDL_GameControllerHasRumble(controller);
+	bool has_rumble_triggers = SDL_GameControllerHasRumbleTriggers(controller);
+
+	const char *steam_handle = SDL_GameControllerGetSteamHandle(controller);
+	Napi::Value steam_handle_node = steam_handle == 0 ? env.Null() : Napi::String::New(env, steam_handle);
+	
+	const char *controller_path = SDL_GameControllerPath(controller);
+	Napi::Value controller_path_node = controller_path == 0 ? env.Null() : Napi::String::New(env, controller_path);
 
 	Napi::Object result = Napi::Object::New(env);
 	// result.Set("id", Napi::Number::New(env, joystick_id)); // NOTE: Unused. Same as the device id
+	result.Set("controllerName", controller_name_node);
 	result.Set("firmwareVersion", firmware_version);
+	result.Set("controllerVendor", vendor_node);
+	result.Set("controllerProduct", product_node);
+	result.Set("controllerPath", controller_path_node);
 	result.Set("serialNumber", serial_number);
 	result.Set("hasLed", Napi::Boolean::New(env, has_led));
 	result.Set("hasRumble", Napi::Boolean::New(env, has_rumble));
 	result.Set("hasRumbleTriggers", Napi::Boolean::New(env, has_rumble_triggers));
+	result.Set("steam_handle", steam_handle_node);
 
 	controller::getState(env, controller, result);
 

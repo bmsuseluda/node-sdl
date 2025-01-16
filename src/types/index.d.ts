@@ -968,7 +968,12 @@ export namespace Sdl {
 			on (event: '*', listener: (type: string, event: Events.Controller.Any) => void): this
 
 			readonly device: Device
+			readonly controllerName: string
 			readonly firmwareVersion: number
+			readonly controllerVendor: number
+			readonly controllerProduct: number
+			readonly controllerPath: string
+			readonly steamHandle: string
 			readonly serialNumber: string
 
 			readonly axes: {

@@ -16,7 +16,12 @@ class ControllerInstance extends EventsViaPoll {
 
 		const result = Bindings.controller_open(device._index)
 
+		this._controllerName = result.controllerName
 		this._firmwareVersion = result.firmwareVersion
+		this._controllerVendor = result.controllerVendor
+		this._controllerProduct = result.controllerProduct
+		this._controllerPath = result.controllerPath
+		this._steamHandle = result.steamHandle
 		this._serialNumber = result.serialNumber
 		this._hasLed = result.hasLed
 		this._hasRumble = result.hasRumble
@@ -40,7 +45,12 @@ class ControllerInstance extends EventsViaPoll {
 	}
 
 	get device () { return this._device }
+	get controllerName () { return this._controllerName }
 	get firmwareVersion () { return this._firmwareVersion }
+	get controllerVendor () { return this._controllerVendor }
+	get controllerProduct () { return this._controllerProduct }
+	get controllerPath () { return this._controllerPath }
+	get steamHandle () { return this._steamHandle }
 	get serialNumber () { return this._serialNumber }
 
 	get axes () {

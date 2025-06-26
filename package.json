@@ -1,10 +1,10 @@
 {
-  "version": "0.11.8",
+  "version": "0.11.9",
   "name": "@bmsuseluda/sdl",
   "description": "SDL bindings for Node.js",
   "keywords": [
     "sdl",
-    "sdl2",
+    "sdl3",
     "gui",
     "desktop",
     "canvas",
@@ -67,7 +67,7 @@
   "sdl": {
     "owner": "bmsuseluda",
     "repo": "build-sdl",
-    "version": "2.32.8"
+    "version": "3.2.16"
   },
   "devDependencies": {
     "@kmamal/evdev": "^0.0.2",

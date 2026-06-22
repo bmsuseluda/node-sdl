@@ -71,7 +71,7 @@
     "@kmamal/testing": "^0.0.33",
     "@types/node": "^24.1.0",
     "node-addon-api": "^8.5.0",
-    "node-gyp": "^11.2.0"
+    "node-gyp": "^13.0.0"
   },
   "config": {
     "sdl": {
